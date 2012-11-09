@@ -1,0 +1,4 @@
+average duration (seconds): 164976.58435814455
+max duration (seconds): 417697.0
+average chain length: 6.460949298813376
+max chain length (diameter): 25
