@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.SortedMap;
-import java.util.SortedSet;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.ext.GmlExporter;
@@ -105,10 +103,11 @@ public class NewsFlowAnalyzer {
 	
 	private void calculateInfluence(DefaultDirectedWeightedGraph<TwitterUser, DefaultWeightedEdge> graph, String fileName) throws Exception {
 		Set<TwitterUser> twitterUsers = graph.vertexSet();
-		SortedSet<InfluentialTwitterUser> influentialUsers = new TreeSet<InfluentialTwitterUser>(Collections.reverseOrder());
+		List<InfluentialTwitterUser> influentialUsers = new ArrayList<InfluentialTwitterUser>();
 		for (TwitterUser twitterUser : twitterUsers) {
 			influentialUsers.add(new InfluentialTwitterUser(twitterUser, graph.outDegreeOf(twitterUser)));
 		}
+		Collections.sort(influentialUsers, Collections.reverseOrder());
 		Util.writeCsv(influentialUsers, fileName);
 	}
 	
